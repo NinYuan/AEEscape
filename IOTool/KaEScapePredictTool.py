@@ -25,19 +25,19 @@ def predictKaScape(Kas,mu,Pb,SInfo,outpathfile,outfigurepathfile,title):
     #print(PTSB)
     #形成KaScape概率图
     outpath=outpathfile+'PTSB'+'.txt'
-    outfigurepath=outfigurepathfile+'PTSB'+'.pdf'
+    outfigurepath=outfigurepathfile+'PTSB'+'.png'
     writePredictKaScapeProbability(PTSB, outpath)
     printPic(outpath, outfigurepath, title)
 
     outpathKa = outpathfile + 'Ka' + '.txt'
-    outfigurepathKa = outfigurepathfile+ 'Ka' + '.pdf'
+    outfigurepathKa = outfigurepathfile+ 'Ka' + '.png'
     writePredictKaScapeProbability(Katotals, outpathKa)
     printPic(outpathKa, outfigurepathKa, title)
 
     RI=(Katotals/(Katotals+exp(-mu)))/Pb
 
     outpathRI = outpathfile + 'RI' + '.txt'
-    outfigurepathRI = outfigurepathfile + 'RI' + '.pdf'
+    outfigurepathRI = outfigurepathfile + 'RI' + '.png'
     writePredictKaScapeProbability(RI, outpathRI)
     printPic(outpathRI, outfigurepathRI, title)
 

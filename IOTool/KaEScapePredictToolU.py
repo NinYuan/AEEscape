@@ -11,7 +11,7 @@ def writePredictKaScapeProbability(probs,outfilepath):
     kmerdata = probs.reshape(num, num)
     writeProbKmer(kmerdata, outfilepath)
 
-def predictKaScape(Kas,mu,Pbscale,UInfo,SBInfo,outpathfile,outfigurepathfile,title):
+def predictKaScape(Kas,mu,scale,UInfo,SBInfo,outpathfile,outfigurepathfile,title):
 
     SeqInfo=array(UInfo[1])
     SeqijKaEach = (SeqInfo.reshape(len(SeqInfo), len(Kas)) * Kas)
@@ -21,23 +21,23 @@ def predictKaScape(Kas,mu,Pbscale,UInfo,SBInfo,outpathfile,outfigurepathfile,tit
 
     UProbs=array(UInfo[0])
     BProbs=array(SBInfo[0])
-    PsProbsDivPb=BProbs+Pbscale*UProbs
+    PsProbsDivPb=BProbs+scale*UProbs
     PTSB=(Katotals/(Katotals+exp(-mu)))*PsProbsDivPb
     #形成KaScape概率图
     outpath=outpathfile+'PTSB'+'.txt'
-    outfigurepath=outfigurepathfile+'PTSB'+'.pdf'
+    outfigurepath=outfigurepathfile+'PTSB'+'.png'
     writePredictKaScapeProbability(PTSB, outpath)
     printPic(outpath, outfigurepath, title)
 
     outpathKa = outpathfile + 'Ka' + '.txt'
-    outfigurepathKa = outfigurepathfile+ 'Ka' + '.pdf'
+    outfigurepathKa = outfigurepathfile+ 'Ka' + '.png'
     writePredictKaScapeProbability(Katotals, outpathKa)
     printPic(outpathKa, outfigurepathKa, title)
 
-    BU=Katotals*exp(mu)*Pbscale #通过Ka 预测 bound/unbound的值 [T]=exp(mu)
+    BU=Katotals*exp(mu)*scale #通过Ka 预测 bound/unbound的值 [T]=exp(mu)
 
     outpathBU = outpathfile + 'BdivU' + '.txt'
-    outfigurepathBU = outfigurepathfile + 'BdivU' + '.pdf'
+    outfigurepathBU = outfigurepathfile + 'BdivU' + '.png'
     writePredictKaScapeProbability(BU, outpathBU)
     printPic(outpathBU, outfigurepathBU, title)
 

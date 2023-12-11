@@ -18,7 +18,7 @@ def printPic(filepath,outpath,title):
 
     plt.xticks([])
     plt.yticks([])
-    plt.colorbar( format='%.2e',label='Association constant Ka (M)')
+    plt.colorbar()
     colornm='r'
 
     text_params = {'ha': 'center', 'va': 'center', 'family': 'sans-serif',
